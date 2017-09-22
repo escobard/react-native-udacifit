@@ -1,4 +1,4 @@
-#React Native
+# React Native
 
 This repository will contain all my notes, and course files for the `React Native` section of the `React Nanodegree` with Udacity. 
 
