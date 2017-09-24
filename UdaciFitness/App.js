@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
 // we can use the following to import icons with the following code
 // the import path is provided by the icon library we choose
 import { Ionicons } from '@expo/vector-icons'
+
+import AddEntry from './components/AddEntry';
 
 export default class App extends React.Component {
   componentDidMount(){
@@ -24,9 +27,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Ionicons name='ios-pizza' color='red' size={200}/>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <AddEntry />
       </View>
     );
   }
