@@ -4,6 +4,7 @@ import { getMetricMetaInfo } from '../utils/helpers';
 
 import UdaciSlider from './UdaciSlider';
 import UdaciStepper from './UdaciStepper';
+import DateHeader from './DateHeader';
 
 export default class AddEntry extends Component {
 	state ={
@@ -58,8 +59,11 @@ export default class AddEntry extends Component {
 	render(){
 		const metaInfo = getMetricMetaInfo();
 		// Object.keys(metaInfo) returns an array  with all the properties of the getMetricMetaInfo() function
+		// as seen below, utilizing the { } within a functional argument, allows you to return the component argument within the
+		// component as seen in the DateHeader below
 		return(
 			<View>
+				<DateHeader date={(new Date()).toLocaleDateString()}/>
 				{Object.keys(metaInfo).map((key) =>{
 					const { getIcon, type, ...rest } = metaInfo[key]
 					const value = this.state[key]
