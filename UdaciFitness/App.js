@@ -1,5 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+  StyleSheet,
+  Text, 
+  View,
+
+  // This transforms the component from one color to another when you press on it
+  TouchableHighlight,
+  // only usable in android, and gives the button the ripple effect seen in native android apps
+  TouchableNativeFeedback,
+  // changes the opacity of the button so that the background is see through
+  TouchableOpacity,
+  // does not change the button apperance and just returns the function
+  TouchableWithoutFeedback 
+} from 'react-native';
 
 // we can use the following to import icons with the following code
 // the import path is provided by the icon library we choose
@@ -23,11 +36,32 @@ export default class App extends React.Component {
     // Add icons by utilizing the imported component as shown below
     // can add options such as color for color and size for size
   }
+  handlePress(){
+    alert('Hello!');
+  }
   render() {
     return (
       <View style={styles.container}>
         <Ionicons name='ios-pizza' color='red' size={200}/>
         <AddEntry />
+        <TouchableHighlight style={styles.btn} onPress={this.handlePress} underlayColor='#000'>
+          <Text style={styles.btnText}>Touchable Highlight</Text>
+        </TouchableHighlight>
+        <TouchableOpacity style={styles.btn} onPress={this.handlePress}>
+          <Text style={styles.btnText}>Touchable Opacity</Text>
+        </TouchableOpacity>
+        <TouchableWithoutFeedback onPress={this.handlePress}>
+            <View style={styles.btn}>
+              <Text style={styles.btnText}>Touchable Opacity</Text>
+            </View>
+        </TouchableWithoutFeedback>
+        <TouchableNativeFeedback 
+         background={TouchableNativeFeedback.SelectableBackground()}
+         onPress={this.handlePress}>
+            <View style={styles.btn}>
+              <Text style={styles.btnText}>Touchable Opacity</Text>
+            </View>
+        </TouchableNativeFeedback>
       </View>
     );
   }
@@ -41,4 +75,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  btn: {
+    backgroundColor: '#E53224',
+    padding: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
+    justifyContent : 'center',
+    alignItems: 'center',
+    borderRadius: 5
+  },
+  btnText: {
+    color: '#fff'
+  }
 });
