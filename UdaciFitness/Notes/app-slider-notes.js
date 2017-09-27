@@ -6,7 +6,6 @@ import {
   Slider
 } from 'react-native';
 
-import AddEntry from './components/AddEntry';
 
 export default class App extends React.Component {
   state ={
@@ -15,7 +14,13 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddEntry/>
+        <Slider
+         value={this.state.value}
+         onValueChange={(value) => this.setState(()=>({value}))}
+         minimumValue={-10}
+         maximumValue={10}
+         step={1} />
+        <Text>Value: {this.state.value}</Text>
       </View>
     );
   }
