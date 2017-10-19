@@ -9,6 +9,8 @@ import UdaciStepper from './UdaciStepper';
 import DateHeader from './DateHeader';
 import TextButton from './TextButton';
 
+import { submitEntry, removeEntry} from '../utils/api'
+
 function SubmitBtn({onPress}){
 	return(
 
@@ -90,14 +92,15 @@ export default class AddEntry extends Component {
 
 		// navigate to home
 
-		// save to db
+		submitEntry({key, entry})
 
 		// clear local notification
 	}
 	reset(){
 		const key = timeToString()
-
+		removeEntry(key);
 	}
+	
 	render(){
 		const metaInfo = getMetricMetaInfo();
 		// Object.keys(metaInfo) returns an array  with all the properties of the getMetricMetaInfo() function
