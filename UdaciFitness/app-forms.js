@@ -30,7 +30,9 @@ export default class App extends React.Component {
   // otherwise it throws an error
 
   // the KeyboardAvoidingView component is VERY useful for forms and inputs that have the keyboard overlap
-  // the input in some native projects
+  // the input in some native projects with the onChange handler:
+  // onChange={(event)=>this.handleTextChange(event.nativeEvent.text)}/>
+  // OR use the onChangeText method instead
   render() {
     const { input, showInput } = this.state
     return (
@@ -46,7 +48,7 @@ export default class App extends React.Component {
             <TextInput 
                 value={input} 
                 style={styles.input} 
-                onChange={(event)=>this.handleTextChange(event.nativeEvent.text)}/>
+                onChangeText={this.handleTextChange}/>
         )}
       </KeyboardAvoidingView>
 
