@@ -1,46 +1,23 @@
 import React from 'react';
-import { 
-  StyleSheet,
-  Text, 
-  View,
-  Slider
-} from 'react-native';
-
-import AddEntry from './components/AddEntry';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
-  state ={
-    value: 0
-  }
   render() {
     return (
       <View style={styles.container}>
-        <AddEntry/>
+        <Text>Open up App.js to start working on your app!</Text>
+        <Text>Changes you make will automatically reload.</Text>
+        <Text>Shake your phone to open the developer menu.</Text>
       </View>
     );
   }
 }
 
-// this creates our styles for specific views
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginLeft:10,
-    marginRight: 10,
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  btn: {
-    backgroundColor: '#E53224',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent : 'center',
-    alignItems: 'center',
-    borderRadius: 5
-  },
-  btnText: {
-    color: '#fff'
-  }
 });
