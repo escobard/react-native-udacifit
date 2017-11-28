@@ -6,7 +6,7 @@ import {
   Slider
 } from 'react-native'
 
-/* For inline styles, example below - inline styles are NOT recommended
+/* For inline styles, example below - inline styles are NOT recommended unless the component utilizes one or two unique styles in which case inlining is fine - still not ideal for larger apps
 export default class App extends React.Component {
 
   render() {
