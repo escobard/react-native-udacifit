@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, AppRegistry } from 'react-native'
 
 class FlexboxExamples extends Component {
+  // utilized `flex` to increase the size of each element - utilizing the `flex` property allows you to multiply or divide the height / width of a container depending on the direction
+  // individual styles can also be added inline as shown below
   render() {
     return (
       <View style={styles.container}>
         <View style={[styles.box, {flex: 1}]}/>
-        <View style={[styles.box, {flex: 2}]}/>
+        <View style={[styles.box, {flex: 2, alignSelf: 'flex-end'}]}/>
         <View style={[styles.box, {flex: 1}]}/>
       </View>
     )
