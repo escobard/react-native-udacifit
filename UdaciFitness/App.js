@@ -36,7 +36,13 @@ const styles = StyleSheet.create({
     //flexDirection: 'row'
 
     // alignItems is utilized to change the horizonatal positioning of items across the cross axis
-    alignItems: 'flex-start'
+    //alignItems: 'flex-start'
+
+    // this will align the eitems in the middle of the cross axis (horizontal)
+    //alignItems: 'center'
+
+    // this will align the items in the end of the cross axis (horizontal)
+    alignItems: 'flex-end'
   },
   box: {
     height: 50,
