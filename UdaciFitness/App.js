@@ -5,9 +5,9 @@ class FlexboxExamples extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.box}/>
-        <View style={styles.box}/>
-        <View style={styles.box}/>
+        <View style={[styles.box, {flex: 1}]}/>
+        <View style={[styles.box, {flex: 2}]}/>
+        <View style={[styles.box, {flex: 1}]}/>
       </View>
     )
   }
@@ -45,16 +45,20 @@ const styles = StyleSheet.create({
     //alignItems: 'flex-end'
 
     // alignItems: 'stretch' will stretch every child element along the Cross Axis as long as the child element does not have a specified height (flexDirection: row) or width (flexDirection: column). ​
-    alignItems: 'stretch',
+    alignItems: 'center',
 
     // adding a flexDirection with the alignItems: 'stretch' property determins which way the `stretch` takes place.
     // with the default (column) property, the stretch is horizontal (cross axis)
     // with the row property, the stretch is vertical
     // for the stretch to work appropriately, the element must have NO width property to stretch vertically, and NO height property to stretch horizontally
-    flexDirection: 'row'
+
+    // aligns all content vertically, in the middle of the app
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   box: {
     width: 50,
+    height: 50,
     backgroundColor: '#e76e63',
     margin: 10,
   }
