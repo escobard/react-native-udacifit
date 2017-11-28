@@ -42,11 +42,13 @@ const styles = StyleSheet.create({
     //alignItems: 'center'
 
     // this will align the items in the end of the cross axis (horizontal)
-    alignItems: 'flex-end'
+    //alignItems: 'flex-end'
+
+    // alignItems: 'stretch' will stretch every child element along the Cross Axis as long as the child element does not have a specified height (flexDirection: row) or width (flexDirection: column). ​
+    alignItems: 'stretch'
   },
   box: {
     height: 50,
-    width: 50,
     backgroundColor: '#e76e63',
     margin: 10,
   }
