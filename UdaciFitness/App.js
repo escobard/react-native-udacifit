@@ -27,7 +27,13 @@ const styles = StyleSheet.create({
     //justifyContent: 'flex-end'
 
     // this will align every child so that the space between each child is even along the Main Axis. ​
-    justifyContent: 'space-between'
+    // justifyContent: 'space-between'
+
+    // this will align every child element so that there is even space around each element along the Main Axis. ​
+    justifyContent: 'space-around',
+
+    // this will align the items in a row instead of the default column orientation of flexbox - rows are horizontal, columns are vertical
+    flexDirection: 'row'
   },
   box: {
     height: 50,
