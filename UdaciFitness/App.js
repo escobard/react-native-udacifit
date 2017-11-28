@@ -16,6 +16,9 @@ class FlexboxExamples extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // this will align the child element towards the START of the main (y) axis of flexbox.
+    // The flexbox guide section of the nanodegree is incredibly helpful for learning more about flexbox and its utilization.
+    justifyContent: 'flex-start'
   },
   box: {
     height: 50,
