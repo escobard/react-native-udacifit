@@ -3,6 +3,11 @@ import {
   StyleSheet,
   Text, 
   View,
+  // this component can be used to check the Platform of the application
+  // can be utilized in the following way: 
+  // Platform.OS === 'ios' ? do stuff : do other stuff
+  // Platform.OS === 'android' ? do stuff : do other stuff
+  Platform,
   Slider
 } from 'react-native'
 import {createStore} from 'redux'
