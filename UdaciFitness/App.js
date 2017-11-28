@@ -24,7 +24,10 @@ const styles = StyleSheet.create({
     // justifyContent: 'center'
 
     // this will align every child element towards the END of the main axis
-    justifyContent: 'flex-end'
+    //justifyContent: 'flex-end'
+
+    // this will align every child so that the space between each child is even along the Main Axis. ​
+    justifyContent: 'space-between'
   },
   box: {
     height: 50,
