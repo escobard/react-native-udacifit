@@ -3,7 +3,7 @@
 // for more on AsyncStorage, and the methods allowed visit this URL: https://facebook.github.io/react-native/docs/asyncstorage.html#methods
 
 import { AsyncStorage } from 'react-native';
-import { CALENDAR_STORAGE_KEY } from '/_calendar';
+import { CALENDAR_STORAGE_KEY } from './calendar';
 
 export function submitEntry({entry, key}){
 	// this adds it to the database calling the AsyncStorage method
