@@ -19,7 +19,12 @@ const styles = StyleSheet.create({
     // this will align the child element towards the START of the main (y) axis of flexbox.
     // The flexbox guide section of the nanodegree is incredibly helpful for learning more about flexbox and its utilization.
     // justifyContent: 'flex-start'
-    justifyContent: 'center'
+
+    // this will align every child at the center of the main axis
+    // justifyContent: 'center'
+
+    // this will align every child element towards the END of the main axis
+    justifyContent: 'flex-end'
   },
   box: {
     height: 50,
