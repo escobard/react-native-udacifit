@@ -1,7 +1,7 @@
 // utils/helpers.js
 
 import React from 'react'
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, black, red, orange, blue, lightPurp, pink } from './colors';
 
@@ -172,3 +172,5 @@ const styles = StyleSheet.create({
     marginRight: 20
   }
 })
+
+export const checkPlatform = (iOS, android) => Platform.OS === 'ios' ? iOS : android;

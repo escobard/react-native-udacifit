@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { white, purple} from '../../utils/colors'
+
+import { white, purple, gray} from '../../utils/colors'
+import { midFont, lrgFont } from '../../utils/fonts'
 
 export const styles = StyleSheet.create({
 	row:{
@@ -20,6 +22,12 @@ export const styles = StyleSheet.create({
 		paddingLeft: 25,
 		paddingRight: 25
 	},
+	androidBtn: {
+		margin: 5,
+		backgroundColor: purple,
+		padding: 10,
+		borderRadius: 2,
+	},
 	leftBtn:{
 		borderTopRightRadius: 0,
 		borderBottomRightRadius: 0
@@ -27,5 +35,19 @@ export const styles = StyleSheet.create({
 	rightBtn:{
 		borderTopLeftRadius: 0,
 		borderBottomLeftRadius: 0
+	},
+	metricCounter:{
+		width: 85,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	value:{
+		fontSize: lrgFont, 
+		textAlign: 'center'
+	},
+	unit:{
+		fontSize: midFont,
+		textAlign: 'center',
+		color: 'gray'
 	}
 })
