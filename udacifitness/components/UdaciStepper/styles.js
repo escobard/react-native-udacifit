@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { white, purple, gray} from '../../utils/colors'
+import { white, purple, gray, blue} from '../../utils/colors'
 import { midFont, lrgFont } from '../../utils/fonts'
 
 export const styles = StyleSheet.create({
@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
 	},
 	androidBtn: {
 		margin: 5,
-		backgroundColor: purple,
+		backgroundColor: blue,
 		padding: 10,
 		borderRadius: 2,
 	},

@@ -173,4 +173,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export const checkPlatform = (iOS, android) => Platform.OS === 'ios' ? iOS : android;
+export const checkPlatform = (iOS, android) => {
+  if (Platform.OS === 'ios') {
+    return iOS;
+  }
+  else{
+    return android;
+  }
+}
