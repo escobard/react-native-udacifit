@@ -8,18 +8,19 @@ import { styles } from './styles'
 // into this component as props - very neat!
 export default function UdaciSlider({max, unit, step, value, onChange}){
 	return (
-		<View>
+		<View style={styles.row}>
 
 			<Slider
+			  style={styles.slider}
 			  step={step}
 			  value={value}
 			  maximumValue={max}
 			  minimumValue={0}
 			  onValueChange={onChange}
 			/>
-			<View>
-				<Text>{value}</Text>
-				<Text>{unit}</Text>
+			<View style={styles.metricCounter}>
+				<Text style={styles.value}>{value}</Text>
+				<Text style={styles.unit}>{unit}</Text>
 			</View>
 		</View>
 	)
