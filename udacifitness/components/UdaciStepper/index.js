@@ -7,6 +7,7 @@ import { checkPlatform } from '../../utils/helpers'
 
 // again, passed from the properties in helper.js into the component with the {...rest} method
 export default function UdaciStepper({max, unit, step, value, onIncrement, onDecrement}){
+	
 	let iosButtons = () => {
 		return (
 			<View style={styles.decrement}> 
