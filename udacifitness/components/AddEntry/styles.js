@@ -1,7 +1,6 @@
 import { StyleSheet} from 'react-native';
 import { white, purple } from '../../utils/colors';
 
-
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
