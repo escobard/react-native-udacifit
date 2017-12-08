@@ -2,19 +2,22 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import UdaciFitnessCalendar from 'udacifitness-calendar'
+import { AppLoading} from 'expo'
 
 import { receiveEntries, addEntry } from '../../actions'
 
 import { timeToString, getDailyReminderValue } from '../../utils/helpers'
 import { fetchCalendarResults } from '../../utils/api'
 
-import DateHeader from '../../components/DateHeader'
+import DateHeader from '../DateHeader'
 import MetricCard from '../MetricCard'
 
 import styles from './styles'
 
 class History extends Component{
-
+	state = {
+		ready: false
+	}
 	componentDidMount(){
 		fetchCalendarResults()
 		.then((entries)=>{ this.props.receiveEntries(entries)}).catch((error) =>{console.log(error)})
@@ -26,6 +29,9 @@ class History extends Component{
 			}
 		})
 		.catch((error) =>{console.log(error)})
+		.then(() => this.setState({
+			ready: true
+		}))
 	}
 
 	// adding brackets () instead of {} to a function, RETURNS whatever is within the function
@@ -66,15 +72,18 @@ class History extends Component{
 	render(){
 
 		const { entries } = this.props
+		const { ready } = this.state
+
+		if (ready === false) {
+			return <AppLoading />
+		}
 
 		return (
-
 				<UdaciFitnessCalendar 
 					items={entries}
 					renderItem={this.renderItem}
 					renderEmptyDate={this.renderEmptyDate}
 				/>
-
 		)
 	}
 
