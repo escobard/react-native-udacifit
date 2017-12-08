@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import UdaciFitnessCalendar from 'udacifitness-calendar'
 
@@ -8,7 +8,9 @@ import { receiveEntries, addEntry } from '../../actions'
 import { timeToString, getDailyReminderValue } from '../../utils/helpers'
 import { fetchCalendarResults } from '../../utils/api'
 
-import { styles } from './styles'
+import DateHeader from '../../components/DateHeader'
+
+import styles from './styles'
 
 class History extends Component{
 
@@ -31,10 +33,17 @@ class History extends Component{
 	renderItem = ({ today, ...metrics }, formattedDate, key) => (
 		
 
-			<View>
+			<View style={styles.item}>
 				{today
-				 ? <Text>{JSON.stringify(today)}</Text>
-				 : <Text>{JSON.stringify(metrics)}</Text>
+				 ? <View>
+				 	  <DateHeader date={formattedDate} />
+				 	  <Text style={styles.noDataText}>
+				 	  	{today}
+				 	  </Text>
+				   </View>
+				 : <TouchableOpacity onPress={() => console.log('Pressed!')}>
+				 		<Text>{JSON.stringify(metrics)}</Text>
+				   </TouchableOpacity>
 				}
 			</View>
 
@@ -43,8 +52,11 @@ class History extends Component{
 	renderEmptyDate(formattedDate){
 
 		return(
-			<View>
-				<Text>No Data for this day</Text>
+			<View style={styles.item}>
+				<DateHeader date={formattedDate} />
+				<Text style={styles.noDataText}>
+					You didn't log any data on this day.
+				</Text>
 			</View>
 		)
 
