@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import UdaciFitnessCalendar from 'udacifitness-calendar'
 
 import { receiveEntries, addEntry } from '../../actions'
 
@@ -24,11 +25,42 @@ class History extends Component{
 		.catch((error) =>{console.log(error)})
 	}
 
-	render(){
-		return (
+	// adding brackets () instead of {} to a function, RETURNS whatever is within the function
+	// adding a function like the one below with () instead of {} will AUTOMATICALLY return all JSX
+	// without the need to call a return method
+	renderItem = ({ today, ...metrics }, formattedDate, key) => (
+		
+
 			<View>
-				<Text>{JSON.stringify(this.props)}</Text>
+				{today
+				 ? <Text>{JSON.stringify(today)}</Text>
+				 : <Text>{JSON.stringify(metrics)}</Text>
+				}
 			</View>
+
+	)
+
+	renderEmptyDate(formattedDate){
+
+		return(
+			<View>
+				<Text>No Data for this day</Text>
+			</View>
+		)
+
+	}
+
+	render(){
+
+		const { entries } = this.props
+
+		return (
+
+				<UdaciFitnessCalendar 
+					items={entries}
+					renderItem={this.renderItem}
+					renderEmptyDate={this.renderEmptyDate}
+				/>
 
 		)
 	}
@@ -36,7 +68,7 @@ class History extends Component{
 }
 
 function mapStateToProps(entries){
-	return entries;
+	return {entries};
 }
 
 export default connect( mapStateToProps, {receiveEntries, addEntry} )(History)
