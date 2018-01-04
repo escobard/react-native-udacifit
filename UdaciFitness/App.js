@@ -15,15 +15,14 @@ import { Provider } from 'react-redux'
 
 import reducer from './reducers'
 
-import AddEntry from './components/AddEntry'
-import History from './components/History'
+import { Tabs } from './components/Navigation'
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
-          <History />
+          <Tabs />
         </View>
       </Provider>
     );
