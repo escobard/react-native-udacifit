@@ -33,7 +33,8 @@ export const Tabs = TabNavigator({
 		// adds navigation options to the tab navigator component
 		navigationOptions: {
 			header: null
-		}
+		},
+		
 		// this adds options to the entire tab navigator component
 		tabBarOptions: {
 			activeTintColor: Platform.OS === 'ios' ? purple : white, 
