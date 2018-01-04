@@ -13,15 +13,19 @@ import {
 import {createStore} from 'redux'
 import { Provider } from 'react-redux'
 
+import { purple, white } from './utils/colors'
+
 import reducer from './reducers'
 
 import { Tabs } from './components/Navigation'
+import UdaciStatusBar from './components/Navigation/statusBar'
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
+          <UdaciStatusBar backgroundColor={purple} barStyle='light-content' />
           <Tabs />
         </View>
       </Provider>
@@ -33,6 +37,5 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20
   }
 })
