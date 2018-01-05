@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Platform} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import { connect } from 'react-redux'
+import { NavigationActions } 'react-navigation'
 
 import { addEntry } from '../../actions'
 
@@ -98,7 +99,7 @@ class AddEntry extends Component {
 			eat: 0,
 		}))
 
-		// navigate to home
+		this.toHome()
 
 		submitEntry({key, entry})
 
@@ -109,9 +110,17 @@ class AddEntry extends Component {
 
 		this.props.addEntry({ [key] : getDailyReminderValue() })
 
+		this.toHome()
+
 		removeEntry(key);
 	}
-	
+	toHome(){
+
+		// this component has its own actions, which can be dispatched just like redux
+		this.props.navigation.dispatch(NavigationActions.back({
+			key: 'AddEntry'
+		}))
+	}
 	render(){
 		const metaInfo = getMetricMetaInfo();
 		// Object.keys(metaInfo) returns an array  with all the properties of the getMetricMetaInfo() function
