@@ -7,6 +7,7 @@ import { purple, white } from '../../utils/colors'
 import AddEntry from '../AddEntry'
 import History from '../History'
 import EntryDetail from '../EntryDetail'
+import Live from '../Live'
 
 // this is utilized to set up view navigation on react-native
 // full documentation found here : https://reactnavigation.org/docs/navigators/tab
@@ -32,6 +33,13 @@ export const Tabs = TabNavigator({
 			tabBarLabel: 'Add Entry',
 			tabBarIcon: ({tintColor}) => <FontAwesome name="plus-square" size={30} color={tintColor} />
 		},
+	},
+	Live :{
+		screen: Live,
+		navigationOptions: {
+			tabBarLabel: 'Live',
+			tabBarIcon: ({tintColor}) => <FontAwesome name="ios-speedometer" size={30} color={tintColor} />
+		}
 	},
 },
 	{	

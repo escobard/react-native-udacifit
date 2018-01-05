@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Platform} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import { connect } from 'react-redux'
-import { NavigationActions } 'react-navigation'
+import { NavigationActions } from 'react-navigation'
 
 import { addEntry } from '../../actions'
 
