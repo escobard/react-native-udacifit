@@ -1,14 +1,19 @@
 import { Platform } from 'react-native'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 import { purple, white } from '../../utils/colors'
 
 import AddEntry from '../AddEntry'
 import History from '../History'
+import EntryDetail from '../EntryDetail'
 
 // this is utilized to set up view navigation on react-native
 // full documentation found here : https://reactnavigation.org/docs/navigators/tab
+// this functions very well for navigational views that do not need a history, aka the top navigational tabs
+// for the quizes, and for navigational elements where we want the back button to appear,
+//  the StackNavigator component is more appropriate 
+
 export const Tabs = TabNavigator({
 	// determines the tab name
 	History: {
@@ -50,4 +55,22 @@ export const Tabs = TabNavigator({
 				shadowOpacity: 1
 			}
 		}
+})
+
+// this will be utilized as the main navigation component
+// this contains the navigation history, which keeps track of the nav. history much like BrowserHistory
+// this can be used in combination with the Tabs const above
+export const MainNavigator = StackNavigator({
+	Home: {
+		screen: Tabs,
+	},
+	EntryDetail: {
+		screen: EntryDetail,
+		navigationOptions: {
+			headerTintColor: white,
+			headerStyle: {
+				backgroundColor: purple,
+			}
+		}
+	}
 })
