@@ -59,7 +59,10 @@ export const Tabs = TabNavigator({
 
 // this will be utilized as the main navigation component
 // this contains the navigation history, which keeps track of the nav. history much like BrowserHistory
-// this can be used in combination with the Tabs const above
+// this can be used in combination with the Tabs const above, to add a separate navigational screen parameter
+// this can then be accessed with the this.props.navigation.navigate('EntryDetail',{any other props go in this object}) parameter
+
+
 export const MainNavigator = StackNavigator({
 	Home: {
 		screen: Tabs,

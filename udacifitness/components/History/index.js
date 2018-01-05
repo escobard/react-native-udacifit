@@ -37,6 +37,10 @@ class History extends Component{
 	// adding brackets () instead of {} to a function, RETURNS whatever is within the function
 	// adding a function like the one below with () instead of {} will AUTOMATICALLY return all JSX
 	// without the need to call a return method
+
+	// the method below for this.props.navigation does the following:
+	// the 'string' determines the navigation location of stack navigator
+	// the {object} is a prop that is passed along to the view
 	renderItem = ({ today, ...metrics }, formattedDate, key) => (
 		
 
