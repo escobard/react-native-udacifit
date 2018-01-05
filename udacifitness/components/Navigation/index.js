@@ -77,3 +77,54 @@ export const MainNavigator = StackNavigator({
 		}
 	}
 })
+
+
+// there is also the DrawerNavigator component, very similar to TabNavigator
+// However, when the navigation handler is clicked, a drawer opens up, to the left or right
+// similar to the menus on the web that do more or less the same thing
+// sample code below
+
+/* 
+
+COMPONENTS 
+----------
+const Home = ({ navigation }) => (
+  <View>
+    <Text>This is the Home view</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+      <Text>Press here to open the drawer!</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+const Dashboard = ({ navigation }) => (
+  <View>
+    <Text>This is the Dashboard view</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+      <Text>Press here to open the drawer!</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+NAV ROUTES
+----------
+const Drawer = DrawerNavigator({
+  Home: {
+    screen: Home
+  },
+  Dashboard: {
+    screen: Dashboard
+  }
+});
+
+PARENT COMPONENT
+----------------
+export default class App extends React.Component {
+  render() {
+    return (
+      <Drawer />
+    );
+  }
+}
+
+*/
