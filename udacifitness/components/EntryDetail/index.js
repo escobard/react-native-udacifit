@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class EntryDetail extends Component {
-	
+import MetricCard from '../MetricCard'
+
+import {styles} from './styles'
+
+class EntryDetail extends Component {
+
 	// this adds further navigation options to the child component of a StackNavigator / TabNavigator component
 	static navigationOptions = ({ navigation }) => {
 		const { entryId } = navigation.state.params
@@ -17,10 +22,28 @@ export default class EntryDetail extends Component {
 	}
 
 	render(){
+
+		const { metrics } = this.props
+
 		return (
-			<View>
+			<View style={styles.container}>
+				<MetricCard metrics={metrics}/>
 				<Text>Entry Detail - {this.props.navigation.state.params.entryId}</Text>
 			</View>
 		)
 	}
 }
+
+function mapStateToProps(state, { navigation }){
+
+	const { entryId } = navigation.state.params
+	const metrics = state[entryId]
+
+	return {
+		entryId,
+		metrics
+	}
+
+}
+
+export default connect(mapStateToProps)(EntryDetail)
