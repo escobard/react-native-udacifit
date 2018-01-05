@@ -3,7 +3,7 @@
 // for more on AsyncStorage, and the methods allowed visit this URL: https://facebook.github.io/react-native/docs/asyncstorage.html#methods
 
 import { AsyncStorage } from 'react-native';
-import { CALENDAR_STORAGE_KEY } from './calendar';
+import { CALENDAR_STORAGE_KEY, formatCalendarResults } from './calendar';
 
 export function submitEntry({entry, key}){
 	// this adds it to the database calling the AsyncStorage method
@@ -33,4 +33,12 @@ export function removeEntry(key){
 		AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
 	})
 
+}
+
+export function fetchCalendarResults(){
+	// gets the caledar storage key
+	return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
+
+	// returns the formatted date
+	.then(formatCalendarResults)
 }

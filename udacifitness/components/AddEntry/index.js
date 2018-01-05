@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import { connect } from 'react-redux'
-import { addEntry } from '../actions'
 
-import { getMetricMetaInfo, timeToString, getDailyReminderValue } from '../utils/helpers';
+import { addEntry } from '../../actions'
 
-import UdaciSlider from './UdaciSlider';
-import UdaciStepper from './UdaciStepper';
-import DateHeader from './DateHeader';
-import TextButton from './TextButton';
+import { getMetricMetaInfo, timeToString, getDailyReminderValue } from '../../utils/helpers';
+import { submitEntry, removeEntry} from '../../utils/api'
 
-import { submitEntry, removeEntry} from '../utils/api'
+import UdaciSlider from '../UdaciSlider';
+import UdaciStepper from '../UdaciStepper';
+import DateHeader from '../DateHeader';
+import TextButton from '../TextButton';
+
+import {styles} from './styles'
 
 function SubmitBtn({onPress}){
 	return(
 
-		<TouchableOpacity onPress={onPress}>
-			<Text>Submit</Text>
+		<TouchableOpacity 
+			onPress={onPress} 
+			style={Platform.OS === 'ios' ? styles.iosSubmitBtn: styles.androidSubmitBtn}
+		>	
+			<Text style={styles.submitBtnText}>Submit</Text>
 		</TouchableOpacity>
 
 	)
@@ -115,13 +120,13 @@ class AddEntry extends Component {
 
 		if (this.props.alreadyLogged) {
 			return(
-				<View>
+				<View style={styles.center}>
 					<Ionicons
-						name='ios-happy-outline'
+						name={Platform.OS === 'ios' ? 'ios-happy-outline' : 'md-happy'}
 						size={150}
 					/>
 					<Text>You already logged your information for today</Text>
-					<TextButton onPress={this.reset}>
+					<TextButton style={styles.reset} onPress={this.reset}>
 						Reset
 					</TextButton>
 				</View>
@@ -130,15 +135,14 @@ class AddEntry extends Component {
 		}
 
 		return(
-			<View>
+			<View style={styles.container}>
 				<DateHeader date={(new Date()).toLocaleDateString()}/>
-				<Text>{JSON.stringify(this.state)}</Text>
 				{Object.keys(metaInfo).map((key) =>{
 					const { getIcon, type, ...rest } = metaInfo[key]
 					const value = this.state[key]
 
 					return (
-						<View key={key}>
+						<View key={key} style={styles.row}>
 							{getIcon()}
 							{type === 'slider'
 								? <UdaciSlider
@@ -171,3 +175,4 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps, {addEntry})(AddEntry)
+
