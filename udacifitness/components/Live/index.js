@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { Foundation } from '@expo/vector-icons'
+
 
 import { styles } from './styles'
 
 export default class Live extends Component {
 	state = {
 		coords: null,
-		status: null,
+		status: 'undetermined',
 		direction: ''
 	}
+
 	handleStatus(status){
 		switch(status){
 			case null:
@@ -23,8 +26,16 @@ export default class Live extends Component {
 				)
 			case 'undetermined':
 				return (
-					<View>
-						<Text>undetermined</Text>
+					<View style={styles.center}>
+						<Foundation name='alert' size={50}/>
+						<Text>
+							You need to enable location services for this app.
+						</Text>
+						<TouchableOpacity onPress={this.askPermisssion} style={styles.button}>
+							<Text style={styles.buttonText}>
+								Enable
+							</Text>
+						</TouchableOpacity>
 					</View>
 				)
 			default:
@@ -36,11 +47,16 @@ export default class Live extends Component {
 				)
 		}
 	}
+
+	askPermission(){
+
+	}
+
 	render(){
 		const { status, coords, direction } = this.state
 		
 		return (
-			<View>
+			<View style={styles.center}>
 				{this.handleStatus(status)}
 			</View>
 		)
