@@ -8,7 +8,7 @@ import { styles } from './styles'
 export default class Live extends Component {
 	state = {
 		coords: null,
-		status: 'denied',
+		status: 'granted',
 		direction: ''
 	}
 
@@ -44,9 +44,35 @@ export default class Live extends Component {
 				)
 			default:
 				return (
-				 <View>
-				 	<Text>Live</Text>
-				 	<Text>{JSON.stringify(this.state)}</Text>
+				 <View style={styles.container}>
+				 	<View style={styles.directionContainer}>
+				 		<Text style={styles.header}>
+				 			You're heading
+				 		</Text>
+				 		<Text style={styles.direction}>
+				 			North
+				 		</Text>
+				 	</View>
+				 	<View style={styles.metricContainer}>
+				 		<View style={styles.metric}>
+				 			<Text style={styles.metricHeader}>
+				 				Altitude
+				 			</Text>
+				 			<Text style={styles.metricsubHeader}>
+				 				{200} Feet
+				 			</Text>
+				 		</View>
+				 	</View>
+				 	<View style={styles.metricContainer}>
+				 		<View style={styles.metric}>
+				 			<Text style={styles.metricHeader}>
+				 				Speed
+				 			</Text>
+				 			<Text style={styles.metricsubHeader}>
+				 				{300} Feet
+				 			</Text>
+				 		</View>
+				 	</View>
 				 </View> 
 				)
 		}
@@ -58,9 +84,10 @@ export default class Live extends Component {
 
 	render(){
 		const { status, coords, direction } = this.state
+		const currentStatus = status != 'undetermined' || 'denied' || null ? styles.container : styles.null  
 		
 		return (
-			<View style={styles.center}>
+			<View style={currentStatus}>
 				{this.handleStatus(status)}
 			</View>
 		)
