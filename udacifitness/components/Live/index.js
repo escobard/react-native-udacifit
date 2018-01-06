@@ -7,6 +7,8 @@ import { calculateDirection } from '../../utils/helpers'
 
 import { styles } from './styles'
 
+// unfortunately this entire component will not properly work on emulators,
+// and must be tested on real devices
 export default class Live extends Component {
 	state = {
 		coords: null,
@@ -20,7 +22,7 @@ export default class Live extends Component {
 				if (status === 'granted') {
 					return this.setLocation()
 				}
-
+				console.log('status', status)
 				this.setState(() => ({ status }))
 			})
 			.catch((error) =>{
@@ -53,7 +55,7 @@ export default class Live extends Component {
 						<Text>
 							You need to enable location services for this app.
 						</Text>
-						<TouchableOpacity onPress={this.askPermisssion} style={styles.button}>
+						<TouchableOpacity onPress={this.askPermission} style={styles.button}>
 							<Text style={styles.buttonText}>
 								Enable
 							</Text>
@@ -68,7 +70,7 @@ export default class Live extends Component {
 				 			You're heading
 				 		</Text>
 				 		<Text style={styles.direction}>
-				 			North
+				 			{direction}
 				 		</Text>
 				 	</View>
 				 	<View style={styles.metricContainer}>
@@ -77,7 +79,7 @@ export default class Live extends Component {
 				 				Altitude
 				 			</Text>
 				 			<Text style={styles.metricsubHeader}>
-				 				{200} Feet
+				 				{Math.round(coords.altitude * 3.2808)} Feet
 				 			</Text>
 				 		</View>
 				 	</View>
@@ -87,7 +89,7 @@ export default class Live extends Component {
 				 				Speed
 				 			</Text>
 				 			<Text style={styles.metricsubHeader}>
-				 				{300} Feet
+				 				{(coords.speed * 2.2369)} MPH
 				 			</Text>
 				 		</View>
 				 	</View>
