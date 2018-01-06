@@ -1,16 +1,34 @@
 import React, { Component } from 'react'
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { Location, Permissions } from 'expo'
 import { Foundation } from '@expo/vector-icons'
 
+import { calculateDirection } from '../../utils/helpers'
 
 import { styles } from './styles'
 
 export default class Live extends Component {
 	state = {
 		coords: null,
-		status: 'granted',
+		status: null,
 		direction: ''
 	}
+
+	componentDidMount(){
+		Permissions.getAsync(Permissions.LOCATION)
+			.then(({ status }) =>{
+				if (status === 'granted') {
+					return this.setLocation()
+				}
+
+				this.setState(() => ({ status }))
+			})
+			.catch((error) =>{
+				console.warn('Error getting Location Permission: ', error)
+
+				this.setState(() => ({ status: 'undetermined'}))
+			})
+	}	
 
 	handleStatus(status){
 		switch(status){
@@ -82,9 +100,32 @@ export default class Live extends Component {
 
 	}
 
+	setLocation(){
+
+		// this watches the position, and sets additional properties for height, time interval, and distance
+		Location.watchPositionAsync({
+			enableHeightAccuracy: true,
+			timeInterval: 1,
+			distanceInterval: 1, 
+		}, ({ coords }) => {
+
+			// this calculates the direction, sets the new state for direction and the status to render
+			// the correct sub component
+			const newDirection = calculateDirection(coords.heading)
+			const { direction } = this.state
+
+			this.setState(() => ({
+				coords,
+				status: 'granted',
+				direction: newDirection,
+			}))
+
+		})
+	}
+
 	render(){
 		const { status, coords, direction } = this.state
-		const currentStatus = status != 'undetermined' || 'denied' || null ? styles.container : styles.null  
+		const currentStatus = status != 'undetermined' || 'denied' || null ? styles.container : styles.center  
 		
 		return (
 			<View style={currentStatus}>
