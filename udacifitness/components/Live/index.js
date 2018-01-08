@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { View, Text, ActivityIndicator, TouchableOpacity, 
+
+// more on this here: https://facebook.github.io/react-native/docs/animations.html
+// animations should be utilized to improve UI within applications for each view transation
+// utilizing lifecycle methods + manipulating state is the best way to component animations 
+Animated } from 'react-native'
 import { Location, Permissions } from 'expo'
 import { Foundation } from '@expo/vector-icons'
 
@@ -12,8 +17,11 @@ import { styles } from './styles'
 export default class Live extends Component {
 	state = {
 		coords: null,
-		status: null,
-		direction: ''
+		status: 'granted',
+		direction: '',
+		// animations values can be initiated like this and changed inline within the component
+		// by addign styles
+		bounceValue: new Animated.Value(1),
 	}
 
 	componentDidMount(){
@@ -33,6 +41,23 @@ export default class Live extends Component {
 	}	
 
 	handleStatus(status){
+
+		const { status, coords, direction } = this.state
+		
+					if (newDirection !== direction){
+				
+				// this is the callback to an animation sequence
+				Animated.sequence([
+					
+					// this adds a timing animation,
+					Animated.timing(bounceValue, {duration:200, toValue: 1.04}),
+
+					// this adds a spring animation
+					Animated.spring(bounceValue, {toValue: 1, friction: 4})
+				])
+			}d
+
+
 		switch(status){
 			case null:
 				return (
@@ -69,7 +94,7 @@ export default class Live extends Component {
 				 		<Text style={styles.header}>
 				 			You're heading
 				 		</Text>
-				 		<Text style={styles.direction}>
+				 		<Text style={[styles.direction, { transform: [{scale, bounceValue}] }]}>
 				 			{direction}
 				 		</Text>
 				 	</View>
@@ -124,7 +149,7 @@ export default class Live extends Component {
 			// this calculates the direction, sets the new state for direction and the status to render
 			// the correct sub component
 			const newDirection = calculateDirection(coords.heading)
-			const { direction } = this.state
+			const { direction, bounceValue } = this.state
 
 			this.setState(() => ({
 				coords,
