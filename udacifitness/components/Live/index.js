@@ -17,7 +17,7 @@ import { styles } from './styles'
 export default class Live extends Component {
 	state = {
 		coords: null,
-		status: 'granted',
+		status: null,
 		direction: '',
 		// animations values can be initiated like this and changed inline within the component
 		// by addign styles
@@ -41,22 +41,6 @@ export default class Live extends Component {
 	}	
 
 	handleStatus(status){
-
-		const { status, coords, direction } = this.state
-		
-					if (newDirection !== direction){
-				
-				// this is the callback to an animation sequence
-				Animated.sequence([
-					
-					// this adds a timing animation,
-					Animated.timing(bounceValue, {duration:200, toValue: 1.04}),
-
-					// this adds a spring animation
-					Animated.spring(bounceValue, {toValue: 1, friction: 4})
-				])
-			}d
-
 
 		switch(status){
 			case null:
@@ -94,9 +78,9 @@ export default class Live extends Component {
 				 		<Text style={styles.header}>
 				 			You're heading
 				 		</Text>
-				 		<Text style={[styles.direction, { transform: [{scale, bounceValue}] }]}>
+				 		<Animated.Text style={[styles.direction, { transform: [{scale, bounceValue}] }]}>
 				 			{direction}
-				 		</Text>
+				 		</Animated.Text>
 				 	</View>
 				 	<View style={styles.metricContainer}>
 				 		<View style={styles.metric}>
@@ -150,6 +134,28 @@ export default class Live extends Component {
 			// the correct sub component
 			const newDirection = calculateDirection(coords.heading)
 			const { direction, bounceValue } = this.state
+
+			if (newDirection !== direction){
+				
+				// this is the callback to an animation sequence
+				Animated.sequence([
+					
+					// this adds a timing animation,
+					Animated.timing(bounceValue, {duration:200, toValue: 1.04}),
+
+					// this adds a spring animation
+					Animated.spring(bounceValue, {toValue: 1, friction: 4})
+				])
+				// animations always need the .start() method to begin
+				.start()
+			}
+
+			this.setState(() => ({
+				coords,
+				status: 'granted',
+				direction: newDirection,
+			}))
+
 
 			this.setState(() => ({
 				coords,
