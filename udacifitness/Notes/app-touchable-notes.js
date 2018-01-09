@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { 
   StyleSheet,
   Text, 
@@ -20,7 +20,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import AddEntry from './components/AddEntry';
 
-export default class App extends React.Component {
+export default class App extends Component {
   componentDidMount(){
     console.log('Before')
     debugger

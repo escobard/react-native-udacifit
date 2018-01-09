@@ -14,6 +14,7 @@ import {createStore} from 'redux'
 import { Provider } from 'react-redux'
 
 import { purple, white } from './utils/colors'
+import { setLocalNotification } from './utils/Notifications'
 
 import reducer from './reducers'
 

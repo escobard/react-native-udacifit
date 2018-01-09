@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { 
   StyleSheet,
   Text, 
   View,
   Slider
-} from 'react-native';
+} from 'react-native'
 
 
-export default class App extends React.Component {
+export default class App extends Component {
   state ={
     value: 0
   }
