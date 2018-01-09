@@ -13,14 +13,3 @@ export const NOTIFICATION = {
 			vibrate: true,
 		}
 }
-
-export const TOMORROW = () => {
-	
-	// sets the date for the new notification
-	let tomorrow = new Date()
-	tomorrow.setDate(tomorrow.getDate() + 1)
-	tomorrow.setHours(20)
-	tomorrow.setMinutes(0)
-
-	return tomorrow
-}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
-import { Notifications, Permission } from 'expo'
+import { Notifications, Permissions } from 'expo'
 
-import { NOTIFICATION_KEY, NOTIFICATION, TOMORROW } from './constants'
+import { NOTIFICATION_KEY, NOTIFICATION} from './constants'
 
 export function clearLocalNotification(){
 	return AsyncStorage.removeItem(NOTIFICATION_KEY)
@@ -24,7 +24,7 @@ export function setLocalNotification(){
 
 		//handles cases where the user is receiving notifications for the first time
 		if (data === null) {
-			Permissions.asAsync(Permissions.NOTIFICATIONS)
+			Permissions.askAsync(Permissions.NOTIFICATIONS)
 
 			// checks the returned value of the permission above
 			.then(({ status }) =>{
@@ -33,11 +33,17 @@ export function setLocalNotification(){
 				if (status === 'granted') {
 					Notifications.cancelAllScheduledNotificationsAsync()
 
+					let tomorrow = new Date()
+					tomorrow.setDate(tomorrow.getDate() + 1)
+					tomorrow.setHours(20)
+					tomorrow.setMinutes(0)
+
 					// creates the notification with the object returned from the function above
-					Notifications.scheduleLocalNotificationsAsync(
+					Notifications.scheduleLocalNotificationAsync(
 						createNotification(),
+
 						{
-							time: TOMORROW,
+							time: tomorrow,
 							repeat: 'day',
 
 						}

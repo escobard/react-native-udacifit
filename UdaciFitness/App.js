@@ -22,6 +22,9 @@ import { MainNavigator } from './components/Navigation'
 import UdaciStatusBar from './components/Navigation/statusBar'
 
 export default class App extends Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
