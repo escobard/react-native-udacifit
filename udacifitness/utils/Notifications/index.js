@@ -39,7 +39,7 @@ export function setLocalNotification(){
 						createNotification(),
 
 						{
-							time: tomorrow,
+							time: tomorrow(),
 							repeat: 'day',
 
 						}
