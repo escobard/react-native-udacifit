@@ -1,0 +1,19 @@
+{
+  "expo": {
+  	// this handles the expo version
+    "sdkVersion": "21.0.0",
+    // sets the application orientation, locks a single usable orientation
+    "orientation": "portrait",
+    // name of the app
+    "name": "UdaciFitness",
+    // app description
+    "description": "A fitness tracker created for the React Native section of the React Nanodegree",
+    // this is used on the EXPO url
+    "slug": "udacifitness",
+    // version
+    "version": "1.0",
+    // icon
+    "icon" : "https://tylermcginnis.com/udacifitness-512.png"
+
+  }
+}

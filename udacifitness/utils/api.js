@@ -21,7 +21,7 @@ export function removeEntry(key){
 	// grabs the entire DB based on the provided key
 	return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
 	// then grabs the results
-	.then((resunts) =>{
+	.then((results) =>{
 		// turns the data into JSON
 		const data = JSON.parse(results);
 		// grabs the data with the key and sets is as undefined (not sure if this is optimal)
@@ -32,6 +32,7 @@ export function removeEntry(key){
 		// then turns it into a string
 		AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
 	})
+	.catch((error) => {console.log('error with remove entry', error)})
 
 }
 
