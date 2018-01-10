@@ -1,3 +1,17 @@
+/* 
+
+    This file is esentially the file that maintains the information on how to compile applications into the app store.
+
+    For instructions on how to actually do this, take a look at the following articles:
+
+    iOS: https://developer.apple.com/support/itunes-connect/#//apple_ref/doc/uid/TP40011225-CH38-SW1
+
+    Android Play: https://support.google.com/googleplay/android-developer/answer/113469?hl=en
+
+    Involved lesson: https://classroom.udacity.com/nanodegrees/nd019/parts/580105de-1f39-4975-866d-4f430f1aef1d/modules/be422d8e-8927-496d-b203-1868289e90c5/lessons/8b4d3cba-8e1b-4a7b-9065-dacce0b095e5/concepts/ae96e81c-9da6-4f61-8a61-3754361e1afa
+
+*/
+
 {
   "expo": {
   	// this handles the expo version
