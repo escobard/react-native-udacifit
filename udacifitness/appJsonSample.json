@@ -13,7 +13,17 @@
     // version
     "version": "1.0",
     // icon
-    "icon" : "https://tylermcginnis.com/udacifitness-512.png"
+    "icon" : "https://tylermcginnis.com/udacifitness-512.png",
+    // notification handler
+    "notification" : {
+        "icon": "https://tylermcginnis.com/udacifitness-45.png"
+    },
+    "ios": {
+        "bundleIdentifier": ""
+    },
+    "android" : {
+        "package": "org.udacifitness.exp"
+    }
 
   }
 }
