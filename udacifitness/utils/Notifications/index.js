@@ -3,6 +3,7 @@ import { AsyncStorage } from 'react-native'
 import { Notifications, Permissions } from 'expo'
 
 import { NOTIFICATION_KEY, NOTIFICATION} from './constants'
+import { tomorrow } from './utils'
 
 export function clearLocalNotification(){
 	return AsyncStorage.removeItem(NOTIFICATION_KEY)
@@ -32,11 +33,6 @@ export function setLocalNotification(){
 				// if a notification has been granted, schedule another for tomorrow
 				if (status === 'granted') {
 					Notifications.cancelAllScheduledNotificationsAsync()
-
-					let tomorrow = new Date()
-					tomorrow.setDate(tomorrow.getDate() + 1)
-					tomorrow.setHours(20)
-					tomorrow.setMinutes(0)
 
 					// creates the notification with the object returned from the function above
 					Notifications.scheduleLocalNotificationAsync(
