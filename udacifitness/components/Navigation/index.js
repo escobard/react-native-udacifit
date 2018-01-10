@@ -7,6 +7,7 @@ import { purple, white } from '../../utils/colors'
 import AddEntry from '../AddEntry'
 import History from '../History'
 import EntryDetail from '../EntryDetail'
+import Live from '../Live'
 
 // this is utilized to set up view navigation on react-native
 // full documentation found here : https://reactnavigation.org/docs/navigators/tab
@@ -32,6 +33,13 @@ export const Tabs = TabNavigator({
 			tabBarLabel: 'Add Entry',
 			tabBarIcon: ({tintColor}) => <FontAwesome name="plus-square" size={30} color={tintColor} />
 		},
+	},
+	Live :{
+		screen: Live,
+		navigationOptions: {
+			tabBarLabel: 'Live',
+			tabBarIcon: ({tintColor}) => <FontAwesome name="ios-speedometer" size={30} color={tintColor} />
+		}
 	},
 },
 	{	
@@ -77,3 +85,54 @@ export const MainNavigator = StackNavigator({
 		}
 	}
 })
+
+
+// there is also the DrawerNavigator component, very similar to TabNavigator
+// However, when the navigation handler is clicked, a drawer opens up, to the left or right
+// similar to the menus on the web that do more or less the same thing
+// sample code below
+
+/* 
+
+COMPONENTS 
+----------
+const Home = ({ navigation }) => (
+  <View>
+    <Text>This is the Home view</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+      <Text>Press here to open the drawer!</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+const Dashboard = ({ navigation }) => (
+  <View>
+    <Text>This is the Dashboard view</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+      <Text>Press here to open the drawer!</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+NAV ROUTES
+----------
+const Drawer = DrawerNavigator({
+  Home: {
+    screen: Home
+  },
+  Dashboard: {
+    screen: Dashboard
+  }
+});
+
+PARENT COMPONENT
+----------------
+export default class App extends React.Component {
+  render() {
+    return (
+      <Drawer />
+    );
+  }
+}
+
+*/

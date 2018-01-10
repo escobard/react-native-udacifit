@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Platform} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
 import { addEntry } from '../../actions'
 
 import { getMetricMetaInfo, timeToString, getDailyReminderValue } from '../../utils/helpers';
+import { clearLocalNotification, setLocalNotification } from '../../utils/Notifications'
 import { submitEntry, removeEntry} from '../../utils/api'
 
 import UdaciSlider from '../UdaciSlider';
@@ -29,6 +31,7 @@ function SubmitBtn({onPress}){
 }
 
 class AddEntry extends Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -64,6 +67,7 @@ class AddEntry extends Component {
 			}
 		})
 	}
+
 	decrement(metric){
 		this.setState((state)=>{
 			const count = state[metric] - getMetricMetaInfo(metric).step;
@@ -79,11 +83,13 @@ class AddEntry extends Component {
 			}
 		})
 	}
+
 	slide(metric, value){
 		this.setState(() =>({
 			[metric]: value
 		}))
 	}
+
 	submit(){
 		const key = timeToString();
 		const entry = this.state;
@@ -98,20 +104,32 @@ class AddEntry extends Component {
 			eat: 0,
 		}))
 
-		// navigate to home
+		this.toHome()
 
 		submitEntry({key, entry})
 
-		// clear local notification
+		clearLocalNotification()
+			.then(setLocalNotification)
 	}
+
 	reset(){
 		const key = timeToString();
 
 		this.props.addEntry({ [key] : getDailyReminderValue() })
 
+		this.toHome()
+
 		removeEntry(key);
 	}
-	
+
+	toHome(){
+
+		// this component has its own actions, which can be dispatched just like redux
+		this.props.navigation.dispatch(NavigationActions.back({
+			key: 'AddEntry'
+		}))
+	}
+
 	render(){
 		const metaInfo = getMetricMetaInfo();
 		// Object.keys(metaInfo) returns an array  with all the properties of the getMetricMetaInfo() function

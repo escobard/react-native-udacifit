@@ -14,6 +14,7 @@ import {createStore} from 'redux'
 import { Provider } from 'react-redux'
 
 import { purple, white } from './utils/colors'
+import { setLocalNotification } from './utils/Notifications'
 
 import reducer from './reducers'
 
@@ -21,6 +22,9 @@ import { MainNavigator } from './components/Navigation'
 import UdaciStatusBar from './components/Navigation/statusBar'
 
 export default class App extends Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
